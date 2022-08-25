@@ -1,8 +1,9 @@
+// main is the Controler - it holds the Model (Tweeter) and the View (Renderer) modules, and the events functions
 
 const tweeter = Tweeter()
 const renderer = Renderer()
 
-const rend = function() {
+const rend = function() {    // reloads the data on the screen
     renderer.renderPosts(tweeter.getPosts())
 }
 
@@ -18,13 +19,13 @@ rend();
 const post = function() {
     const p = $("#input").val();
     if(p.length == 0){
-        alert("Can't post an empty tweet!")
+        alert("Can't post an empty tweet! Try again!")
         return;
     }
     tweeter.addPost(p);  
     rend();
     
-    $("#input").val("");
+    $("#input").val("");    // "cleaning" the input's placeholder
 }
 
 
@@ -59,4 +60,22 @@ $("#posts").on("click", ".delete-comment", function() {
     const pId = $(this).closest(".post").attr("id");
     tweeter.removeComment(pId, cId)
     rend()
+})
+
+
+
+// like
+
+$("#posts").on("click", ".heart-false", function() {
+    const pId = $(this).closest(".post").attr("id");
+    tweeter.likePost(pId);
+    rend();
+})
+
+// unlike
+
+$("#posts").on("click", ".heart-true", function() {
+    const pId = $(this).closest(".post").attr("id");
+    tweeter.likePost(pId);
+    rend();
 })

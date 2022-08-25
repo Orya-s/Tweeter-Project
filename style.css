@@ -18,18 +18,18 @@ body{
 #header{
     grid-area: h;
     color: #3498db;
-    font-size:70px;
+    font-size: 80px;
     margin-bottom: 25px;
     position: relative;
 }
 
-#input{
+#input{     /* Post Input */
     grid-area: i;
     padding: 10px;
     font-size: 1.5vw;
 }
 
-#posts{
+#posts{     /* Post Area */
     grid-area: p;
 }
 
@@ -45,7 +45,11 @@ body{
     font-size: 2.5vw;
 }
 
-.post{
+#post:active{    /* Twit button */ 
+    background-color: #2980b9
+}
+
+.post{     /* All Posts Class */
     box-shadow: 1px 1px 3px;
     margin: 10px;
     border-radius: 5px;
@@ -55,22 +59,22 @@ body{
     background-color: whitesmoke;
 }
 
-#post:active{    /* Twit button */ 
-    background-color: #2980b9
-}
-
 .post-text{
     font-weight: bold;
     margin-bottom: 7px;
     font-size: larger;
+    margin-right: 4%;
+    overflow-wrap: break-word;
 }
 
-.comments{
+.comments{      /* All Comments Class */
     margin-left: 10px;
     margin: 10px;
+    margin-right: 3%;
+    overflow-wrap: break-word;
 }
 
-.delete{
+.delete{      /* Posts Delete Button */
     cursor: pointer;
     color: red;
     display: inline-block;
@@ -81,9 +85,6 @@ body{
     position: absolute;
     top: 5px;
     right: 5px;
-    /* z-index: 100; */
-
-    /* font-family: Monospace; */
     width: 18px;
     height: 19px;
     text-align: center;
@@ -91,12 +92,12 @@ body{
     font-size: 23px;
 }
 
-.delete-comment{
+.delete-comment{      /* Comments Delete Button */
     cursor: pointer;
     color: #e74c3c;
 }
 
-#pic {
+#pic {      /* Header Pictures */
     position: absolute;
     max-width: 33px;
     max-height: 33px;
@@ -105,7 +106,7 @@ body{
     margin-left: 10px;
 }
 
-.comment-input {
+.comment-input {     /* Comment Input */
     padding: 3px;
     margin-top: 5px;
     width: 40%;
@@ -126,24 +127,22 @@ body{
     border-radius: 2px;
 }
 
-.heart {
+.heart-false,
+.heart-true {       /* Posts Like Button */
     position: absolute;
     right: 16px;
     bottom: 6px;
     color: red;
-    font-weight: 900;
+    font-weight: 100;
     font-size: 28px;
+    cursor: pointer;
+}
+.heart-true {
+    font-weight: 990;
+    font-size: 36px;
 }
 
-
-/* .num-like {     <span class="num-like">0</span>
-    color: rgb(69, 68, 68);
-    font-weight: 100;
-    margin-bottom: 30px;
-} */
-
-
-.pic {
+.pic {      /* Send Comment Button */
     max-width: 18px;
     max-height: 18px;
     position: absolute;
@@ -151,12 +150,11 @@ body{
     bottom: 0.8px;
 }
 
-.delete-comment {
+.delete-comment {  
     color: red;
     padding: 5px;
     border-radius: 3px;
     border: 0;
-    /* font-weight: bold; */
     font-family: Monospace;
     margin-right: 7px;
     margin-left: 0;

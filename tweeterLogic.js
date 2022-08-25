@@ -1,28 +1,32 @@
+// tweeterLogic is the Tweeter module, which contains the data and it's functions -
+// (add post, delete post, add comment, delete comment, like post)  
 
 const Tweeter = function() {
     const _posts = [
         {
-            text: "First post!",
+            text: "Welcome to Tweeter! This is the first post!",
             id: "p1",
             comments: [
-                { id: "c1", text: "First comment on first post!" },
-                { id: "c2", text: "Second comment on first post!!" },
-                { id: "c3", text: "Third comment on first post!!!" }
-            ]
+                { id: "c1", text: "Write your own posts and comments!" },
+                { id: "c2", text: "You can even delete posts from the feed by clicking the X button in the right top corner" },
+                { id: "c3", text: "And you can also delete comments by clicking the X button on the left!" }
+            ],
+            like: false
         },
 
         {
-            text: "Aw man, I wanted to be first",
+            text: "To like this post click the heart button on the bottom right corner!",
             id: "p2",
             comments: [
-                { id: "c4", text: "Don't wory second poster, you'll be first one day." },
-                { id: "c5", text: "Yeah, believe in yourself!" },
-                { id: "c6", text: "Haha second place what a joke." }
-            ]
+                { id: "c4", text: "That's it! Your'e a Tweeter pro now!" },
+                { id: "c5", text: "Have fun!" },
+            ],
+            like: false
         }
     ]
 
 
+    // a private function - used for creating and removing comments, and liking posts 
     let _getPostById = function(Pid) {
         for(const post in _posts){
             if(_posts[post]["id"] == Pid) {
@@ -31,9 +35,11 @@ const Tweeter = function() {
         }
     }
 
+    // posts counter - holds the number of the last post that was created, in order to give each post a uniqe ID 
     let _maxPId = 2;
 
-    let _maxCId = 6;
+    // comments counter - holds the number of the last comment that was created, in order to give each comment a uniqe ID 
+    let _maxCId = 5;
 
     const getPosts = function() {
         return _posts;
@@ -41,7 +47,7 @@ const Tweeter = function() {
 
     const addPost = function(t) {
         _maxPId += 1;
-        _posts.push({text: t, id: "p" + _maxPId, comments:[]});
+        _posts.push({text: t, id: "p" + _maxPId, comments:[], like:false});
     }
 
     const removePost = function(Pid) {
@@ -73,6 +79,16 @@ const Tweeter = function() {
         }
     }
 
+    const likePost = function(Pid) {
+        const liked = _getPostById(Pid).like;
+        if(liked) {
+            _getPostById(Pid).like = false;
+        }
+        else {
+            _getPostById(Pid).like = true;
+        }
+    }
+
 
     return {
         getPosts,
@@ -80,58 +96,6 @@ const Tweeter = function() {
         removePost,
         addComment,
         removeComment,
-
+        likePost
     }
 }
-
-
-
-
-
-
-
-// myTweeter tests
-
-// const myTweeter = Tweeter()
-// console.log(myTweeter.getPosts());
-
-// myTweeter.addPost("Hello")
-// console.log(myTweeter.getPosts());
-
-// myTweeter.removePost("p2")
-// console.log(myTweeter.getPosts());
-
-// myTweeter.addComment("p3", "world!")
-// console.log(myTweeter.getPosts());
-
-// myTweeter.removeComment("p1", "c3")
-// console.log(myTweeter.getPosts());
-
- 
-
-// group tests
-
-const myTweeter = Tweeter();
-
-myTweeter.addPost("This is myTweeter own post!");
-myTweeter.addPost("2");
-myTweeter.addPost("3");
-myTweeter.addPost("4");
-myTweeter.addPost("5");
-console.log(myTweeter.getPosts());
-
-myTweeter.removePost("p2");
-myTweeter.removePost("p3");
-console.log(myTweeter.getPosts());
-
-myTweeter.addComment("p1", "aiiiii");
-myTweeter.addComment("p1", "biiiii");
-// myTweeter.addComment("p2", "ciiiii");  // already removed - throwing error / try&catch?
-myTweeter.addComment("p4", "diiiii");
-myTweeter.addComment("p5", "eiiiii");
-console.log(myTweeter.getPosts());
-
-myTweeter.removeComment("p1", "c2");
-myTweeter.removeComment("p4", "c3");
-console.log(myTweeter.getPosts());
-
