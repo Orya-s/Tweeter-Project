@@ -51,10 +51,9 @@ const Tweeter = function() {
     }
 
     const removePost = function(Pid) {
-        
-        for(const post in _posts){
-            if(_posts[post]["id"] == Pid) {
-                _posts.splice(post, 1);
+        for (let i = _posts.length-1; i >= 0; i--) {
+            if(_posts[i]["id"] == Pid) {
+                _posts.splice(i, 1);
                 break;
             }
         }
@@ -67,9 +66,8 @@ const Tweeter = function() {
     }
 
     const removeComment = function(Pid, Cid) {
-
         const com = _getPostById(Pid)["comments"]
-        for(const i in com) {
+        for (let i = com.length-1; i >= 0; i--) {
             if(com[i]["id"] == Cid) {
                 com.splice(i,1);
                 break;
